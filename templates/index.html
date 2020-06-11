@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <title>MobileNet SSD Detector</title>
+</head>
+
+<body>
+   {% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+   <div>
+      <h1>MobileNet SSD Detector</h1>
+      <h2>Upload new File</h2>
+      <form method=post enctype=multipart/form-data>
+         <input type=file name=file onchange="loadFile(event)">
+
+         <input type=submit value=Upload>
+
+      </form>
+
+   </div>
+   
+<img id="output"  alt="" />
+
+{% if data %} 
+<img src="{{ data.processed_img }}" alt="" width="40%">
+<img src="{{ data.uploaded_img }}" alt="" width="40%">
+
+{% endif %}
+
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+</body>
+
+</html>
