@@ -4,11 +4,10 @@ from werkzeug.utils import secure_filename
 import cv2
 import numpy as np
 
-UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + '/static/uploads/'
-DOWNLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + '/static/downloads/'
+UPLOAD_FOLDER ='static/uploads/'
+DOWNLOAD_FOLDER = 'static/downloads/'
 ALLOWED_EXTENSIONS = {'jpg', 'png','.jpeg'}
 app = Flask(__name__, static_url_path="/static")
-DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
 
 # APP CONFIGURATIONS
@@ -88,4 +87,4 @@ def detect_object(path, filename):
 #     return send_from_directory(app.config['DOWNLOAD_FOLDER'], filename, as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', threaded=True, debug=True)
+    app.run()
