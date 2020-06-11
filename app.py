@@ -14,7 +14,7 @@ app = Flask(__name__, static_url_path="/static")
 app.config['SECRET_KEY'] = 'opencv'  
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
-# limit upload size upto 8mb
+# limit upload size upto 2mb
 app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
 
 def allowed_file(filename):
@@ -47,8 +47,7 @@ def process_file(path, filename):
     detect_object(path, filename)
     
 
-def detect_object(path, filename):
-    
+def detect_object(path, filename):    
     CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
         "bottle", "bus", "car", "cat", "chair", "cow", "diningtable",
         "dog", "horse", "motorbike", "person", "pottedplant", "sheep",
@@ -58,7 +57,7 @@ def detect_object(path, filename):
     model ="ssd/MobileNetSSD_deploy.caffemodel"
     net = cv2.dnn.readNetFromCaffe(prototxt, model)
     image = cv2.imread(path)
-    image = cv2.resize(image,(640,480))
+    image = cv2.resize(image,(480,360))
     (h, w) = image.shape[:2]
     blob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)), 0.007843, (300, 300), 127.5)
     net.setInput(blob)

@@ -4,39 +4,54 @@
 <head>
    <meta charset="UTF-8">
    <title>MobileNet SSD Detector</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
 </head>
 
 <body>
    {% with messages = get_flashed_messages() %}
-	  {% if messages %}
-		<ul class=flashes>
-		{% for message in messages %}
-		  <li>{{ message }}</li>
-		{% endfor %}
-		</ul>
-	  {% endif %}
-	{% endwith %}
-   <div>
-      <h1>MobileNet SSD Detector</h1>
-      <h2>Upload new File</h2>
+   {% if messages %}
+   <ul class=flashes>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+   </ul>
+   {% endif %}
+   {% endwith %}
+   <nav class="navbar navbar-dark bg-dark ">
+      <a class="navbar-brand navbar-center" href="#">MobileNet SSD</a>
+   </nav>
+
+   <div class="container">
+      <div class="starter-template">
+         <h2>MobileNet SSD Detector</h2>
+         <p>Upload an image and see what objects are detected</p>
+         <p> Max Image Size: 2 MB </p>
+      </div>
+   </div>
+
+
+  
+
+   <div class="container">
       <form method=post enctype=multipart/form-data>
          <input type=file name=file onchange="loadFile(event)">
-
-         <input type=submit value=Upload>
-
+         <input type=submit value=Upload class="btn btn-primary">
       </form>
-
+      <img id="output" alt="" width="40%" height="40%" />
    </div>
-   
-<img id="output"  alt="" />
 
-{% if data %} 
-<img src="{{ data.processed_img }}" alt="" width="40%">
-<img src="{{ data.uploaded_img }}" alt="" width="40%">
+   {% if data %}
+   <div class="container">
+      <img src="{{ data.processed_img }}" alt="" width="480px" height="360px">
+      <img src="{{ data.uploaded_img }}" alt="" width="480px" height="360px">   
+   </div>
+   {% endif %}
 
-{% endif %}
 
-<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+   <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 
 </body>
 
