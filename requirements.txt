@@ -7,3 +7,5 @@ MarkupSafe==1.1.1
 numpy==1.18.5
 opencv-python==4.2.0.34
 Werkzeug==1.0.1
+opencv-contrib-python
+opencv-python-headless
